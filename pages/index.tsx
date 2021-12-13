@@ -3,7 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import { useMoralis } from "react-moralis";
+import ConnectButton from './components/ConnectButton';
+
 const Home: NextPage = () => {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,7 +25,8 @@ const Home: NextPage = () => {
           Click <code className={styles.code}>connect wallet</code> below to get started.
         </p>
 
-        <button>Connect Wallet</button>
+        <ConnectButton/>
+
       </main>
 
       <footer className={styles.footer}>
