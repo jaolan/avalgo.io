@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 
 import { useMoralis } from "react-moralis";
 import ConnectButton from './components/ConnectButton';
+import CodeView from './components/CodeView';
 
 const Home: NextPage = () => {
 
@@ -24,8 +25,9 @@ const Home: NextPage = () => {
         <p className={styles.description}>
           Click <code className={styles.code}>connect wallet</code> below to get started.
         </p>
-
         <ConnectButton/>
+
+        <CodeView />
 
       </main>
 
