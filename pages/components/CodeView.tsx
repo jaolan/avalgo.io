@@ -8,8 +8,13 @@ import styles from '/styles/CodeView.module.css'
 
 
 export default function CodeView() {
+  const userCode = 'function mul(a, b) {\n  return a * b\n}'
+  const testCode = '\n\n// -- Do not write below this line! --\nconst args = process.argv.slice(2)\nconst\n  a = args[0],\n  b = args[1],\n  res = args[2]\nif(res != mul(a, b)) {\n  throw \'Test case failed\'\n}'
+
   // set states for UI
-  const [code, setCode] = useState('const hi = \'hello world!\';\nconsole.log(hi);')
+  const [code, setCode] = useState(
+    userCode + testCode
+  )
 
   // submit code to 'backend'
   const submitCode = () => {
