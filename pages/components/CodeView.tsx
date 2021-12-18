@@ -9,13 +9,13 @@ import styles from '/styles/CodeView.module.css'
 
 export default function CodeView() {
   // set states for UI
-  const [code, setCode] = useState('console.log(\'hello world!\');')
+  const [code, setCode] = useState('const hi = \'hello world!\';\nconsole.log(hi);')
 
   // submit code to 'backend'
   const submitCode = () => {
     axios
       .post('http://localhost:80/js', {code})
-      .then((res) => console.log(res.data.message))
+      .then((res) => console.log(res))
   }
 
   return (
