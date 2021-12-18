@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark }from './oneDarkTheme';
+import axios from 'axios';
 
 import styles from '/styles/CodeView.module.css'
 
@@ -12,7 +13,9 @@ export default function CodeView() {
 
   // submit code to 'backend'
   const submitCode = () => {
-    console.log(code)
+    axios
+      .post('http://localhost:80/js', {code})
+      .then((res) => console.log(res.data.message))
   }
 
   return (
