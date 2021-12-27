@@ -1,5 +1,5 @@
 import React from "react";
-import { useMoralisWeb3Api, useMoralisWeb3ApiCall } from "react-moralis";
+import { useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3ExecuteFunction } from "react-moralis";
 import MoralisType, { Moralis } from 'moralis';
 
 function AvaxPrice () {
@@ -11,110 +11,17 @@ function AvaxPrice () {
   const ABI = [
     {
       "inputs": [],
-      "name": "decimals",
-      "outputs": [
-        {
-          "internalType": "uint8",
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     },
     {
       "inputs": [],
-      "name": "description",
+      "name": "getLatestPrice",
       "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint80",
-          "name": "_roundId",
-          "type": "uint80"
-        }
-      ],
-      "name": "getRoundData",
-      "outputs": [
-        {
-          "internalType": "uint80",
-          "name": "roundId",
-          "type": "uint80"
-        },
         {
           "internalType": "int256",
-          "name": "answer",
-          "type": "int256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "startedAt",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "updatedAt",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint80",
-          "name": "answeredInRound",
-          "type": "uint80"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "latestRoundData",
-      "outputs": [
-        {
-          "internalType": "uint80",
-          "name": "roundId",
-          "type": "uint80"
-        },
-        {
-          "internalType": "int256",
-          "name": "answer",
-          "type": "int256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "startedAt",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "updatedAt",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint80",
-          "name": "answeredInRound",
-          "type": "uint80"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "version",
-      "outputs": [
-        {
-          "internalType": "uint256",
           "name": "",
-          "type": "uint256"
+          "type": "int256"
         }
       ],
       "stateMutability": "view",
@@ -128,11 +35,12 @@ function AvaxPrice () {
       // 0xa869
       const options = {
         chain: "0xa869",
-        address: "0xDB26ae98Ca0bEb71296A1f4062078E472998e252",
+        address: "0x8705A5883B520a672fB89865ed8Afa66828f3987",
         function_name: "getLatestPrice",
         abi: ABI
       };
       // @ts-ignore
+      // const burnt = useWeb3ExecuteFunction({ options })
       const burnt = await Moralis.Web3API.native.runContractFunction(options);
       console.log(burnt);
     } catch (e) {
