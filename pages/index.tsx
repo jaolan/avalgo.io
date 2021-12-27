@@ -2,10 +2,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-
-import { useMoralis } from "react-moralis";
 import ConnectButton from './components/ConnectButton';
 import CodeView from './components/CodeView';
+import AvaxPrice from './components/AvaxPrice';
 
 const Home: NextPage = () => {
 
@@ -19,16 +18,16 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Avax wallet connect =)
+          Avalgo
         </h1>
 
         <p className={styles.description}>
-          Click <code className={styles.code}>connect wallet</code> below to get started.
+          Click connect wallet below to get started.
         </p>
         <ConnectButton/>
 
         <CodeView />
-
+        <AvaxPrice />
       </main>
 
       <footer className={styles.footer}>
