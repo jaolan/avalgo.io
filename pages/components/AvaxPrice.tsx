@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3ExecuteFunction } from "react-moralis";
 import MoralisType, { Moralis } from 'moralis';
 
 function AvaxPrice () {
+
+  // set state variable for AVAX price
+  const [price, setPrice] = useState(0)
 
   // set states for UI
   // const [code, setCode] = useState<string>(userCode + testCode)
@@ -31,8 +34,6 @@ function AvaxPrice () {
 
   const handlePrice = async () => {
     try {
-      //0xa86a
-      // 0xa869
       const options = {
         chain: "0xa869",
         address: "0x8705A5883B520a672fB89865ed8Afa66828f3987",
@@ -40,20 +41,23 @@ function AvaxPrice () {
         abi: ABI
       };
       // @ts-ignore
-      // const burnt = useWeb3ExecuteFunction({ options })
-      const burnt = await Moralis.Web3API.native.runContractFunction(options);
-      console.log(burnt);
+      const price = await Moralis.Web3API.native.runContractFunction(options);
+      const fmtPrice: number = Number(price) * 10**-8
+      console.log(fmtPrice);
+      setPrice(fmtPrice)
+      return true
     } catch (e) {
       console.log(e);
+      setPrice(0)
+      return false
     }
   }
-  
-  
+
   return (
     <div>
-      {<button onClick={handlePrice}>get price</button>}
+      {<button onClick={handlePrice}>Avax price (click to refresh): {price}</button>}
     </div>
-  );
+  )
 }
 
 export default AvaxPrice;

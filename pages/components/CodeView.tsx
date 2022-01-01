@@ -15,6 +15,7 @@ export default function CodeView() {
   // set states for UI
   const [code, setCode] = useState<string>(userCode + testCode)
   const [pass, setPass] = useState<boolean>(false)
+  const [showFail, setShowFail] = useState<boolean>(false)
 
   // submit code to 'backend'
   const submitCode = () => {
@@ -22,8 +23,14 @@ export default function CodeView() {
       .post('http://localhost:80/js', {code})
       .then((res) => {
         console.log(res)
-        res.data.pass && res.data.pass.includes('true') ? 
-          setPass(true) : setPass(false)
+        // set pass/fail, set/hide fail UI to render
+        if(res.data.pass && res.data.pass.includes('true')){
+          setPass(true)
+          setShowFail(false)
+        } else {
+          setPass(false)
+          setShowFail(true)
+        }  
       })
   }
 
@@ -44,12 +51,32 @@ export default function CodeView() {
         // console.log('value:', code)
       }}
       />
-      <button className={styles.submitBtn} onClick={submitCode}>
-        Submit Code
-      </button>
-      <button className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
-        Claim Reward 🔺
-      </button>
+      {/* Show/hide pass UI */}
+      { pass ? (
+        <div className={styles.center}>
+          <h1>Your answer is correct, good job!</h1>
+          <p>Claim your reward below.</p>
+        </div>
+      ) 
+      : (
+        <div/>
+      )}
+      {/* Show/hide fail UI */}
+      { showFail ? (
+        <div className={styles.center}>
+          <h1>Your answer was incorrect, please try again. </h1>
+        </div>
+      ) : ( 
+        <div/>
+      )}
+      <div className={styles.center}>
+        <button className={styles.submitBtn} onClick={submitCode}>
+          Submit Code
+        </button>
+        <button className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
+          Claim Reward 🔺
+        </button>
+      </div>
     </div>
   );
 }
