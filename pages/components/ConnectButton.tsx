@@ -30,7 +30,7 @@ export default function ConnectButton() {
   // return <div>{balance.data}</div>;
  }
 
-NativeBalance()
+  NativeBalance()
 
 	return(
 		<div>

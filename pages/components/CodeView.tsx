@@ -5,7 +5,7 @@ import { oneDark }from './oneDarkTheme';
 import axios from 'axios';
 
 import styles from '/styles/CodeView.module.css'
-import { fail } from 'assert';
+import { useMoralis } from 'react-moralis';
 
 
 export default function CodeView() {
@@ -16,6 +16,7 @@ export default function CodeView() {
   const [code, setCode] = useState<string>(userCode + testCode)
   const [pass, setPass] = useState<boolean>(false)
   const [showFail, setShowFail] = useState<boolean>(false)
+  const { user } = useMoralis()
 
   // submit code to 'backend'
   const submitCode = () => {
@@ -69,7 +70,8 @@ export default function CodeView() {
       ) : ( 
         <div/>
       )}
-      <div className={styles.center}>
+      { user?.authenticated ? (
+        <div className={styles.center}>
         <button className={styles.submitBtn} onClick={submitCode}>
           Submit Code
         </button>
@@ -77,6 +79,9 @@ export default function CodeView() {
           Claim Reward 🔺
         </button>
       </div>
+      ) : (
+        <h1> Please connect your wallet to continue. =)</h1>
+      )}
     </div>
   );
 }
