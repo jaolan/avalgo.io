@@ -47,7 +47,7 @@ export default function ConnectButton() {
             authenticate({signingMessage : 'My Avax dApp auth'});
           }}
         >
-          Sign in with MetaMask
+          Connect Wallet
         </button>
       )}
     </div>

@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import AvaxPrice from './components/AvaxPrice'
 
 import CodeView from './components/CodeView'
 
@@ -19,7 +20,10 @@ const code: NextPage = () => {
       <div className="absolute top-20 bottom-40 left-10 right-10">
       <CodeView />
       </div>
-      <p>Bounty: 0.04 AVAX</p>
+      <div className={styles.center}>
+        <p>Bounty: 0.04 AVAX</p>
+        <AvaxPrice />
+      </div>
     </div>
 
 

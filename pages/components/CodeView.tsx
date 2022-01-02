@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import styles from '/styles/CodeView.module.css'
 import { useMoralis } from 'react-moralis';
+import ConnectButton from './ConnectButton';
 
 
 export default function CodeView() {
@@ -80,7 +81,10 @@ export default function CodeView() {
         </button>
       </div>
       ) : (
-        <h1> Please connect your wallet to continue. =)</h1>
+        <div className={styles.center}>
+          <h1> Answer and claim AVAX rewards by connecting your wallet!</h1>
+          <ConnectButton />
+        </div>
       )}
     </div>
   );
