@@ -6,6 +6,14 @@ export default function ConnectButton() {
 	const { authenticate, isAuthenticated, logout, user } = useMoralis()
   const Web3Api = useMoralisWeb3Api()
 
+  // Format address to:
+  //  0x(first 4 chars)...(last 4 chars)
+  function formattedAddress(addr: String){
+    const len: number = addr.length
+    const formattedStr: string = addr.substring(0,6) + '...' + addr.substring(len - 5,len - 1)
+    return formattedStr
+  }
+
   // Web3Api methods to get native token bal
   function getBalance() {
     const getNativeBalanceQuery = useMoralisWeb3ApiCall(Web3Api.account.getNativeBalance, {
@@ -22,8 +30,7 @@ export default function ConnectButton() {
     console.log('tokens ', balances)
   }
 
-//  getBalance()
-
+  // get the native chain balance
  function NativeBalance() {
   const balance = useNativeBalance({ chain : chain });
   console.log(balance)
@@ -36,10 +43,10 @@ export default function ConnectButton() {
 		<div>
       {isAuthenticated && user ? (
         <>
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout}>{user.get('ethAddress').substring(0,6) + '...' + user.get('ethAddress').substring(user.get('ethAddress').length-5,user.get('ethAddress').length-1)}</button>
           {/* Show user AVAX data */}
-            <h1>Welcome, {user.get('username')}!</h1>
-            <h1>Welcome, {user.get('ethAddress')}!</h1>
+            {/* <h1>Welcome, {user.get('username')}!</h1> */}
+            {/* <h1>Welcome, {user.get('ethAddress')}!</h1> */}
         </>
       ) : (
         <button

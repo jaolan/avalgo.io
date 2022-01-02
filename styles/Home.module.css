@@ -118,3 +118,9 @@
     flex-direction: column;
   }
 }
+
+/* Connect Btn */
+.connectBtn {
+  float: right;
+  padding: 10px;
+}

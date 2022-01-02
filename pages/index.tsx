@@ -24,8 +24,8 @@ const Home: NextPage = () => {
         <p className={styles.description}>
           Click connect wallet below to get started.
         </p>
-        <ConnectButton/>
 
+        <ConnectButton/>
         <CodeView />
         <AvaxPrice />
       </main>

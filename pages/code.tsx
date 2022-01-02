@@ -2,11 +2,14 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import codeStyles from '../styles/CodeView.module.css'
 import AvaxPrice from './components/AvaxPrice'
-
 import CodeView from './components/CodeView'
+import { useMoralis } from 'react-moralis'
 
 const code: NextPage = () => {
+  const { user } = useMoralis()
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +20,7 @@ const code: NextPage = () => {
 
       <h1 className={styles.title}>Code</h1>
       <p className={styles.description}>Get the kth largest subarray for the following: [1,2,3,4,5]</p>
-      <div className="absolute top-20 bottom-40 left-10 right-10">
+      <div className={codeStyles.main}>
       <CodeView />
       </div>
       <div className={styles.center}>
