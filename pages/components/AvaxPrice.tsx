@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3ExecuteFunction } from "react-moralis";
-import MoralisType, { Moralis } from 'moralis';
+import { Moralis } from 'moralis';
 
 const AvaxPrice = () => {
-  const [price, setPrice] = useState(0)
+  const [price, setPrice] = useState<number>(0)
   // time interval for refreshing price component
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = React.useState<number>(0);
 
   // set states for UI
   // const [code, setCode] = useState<string>(userCode + testCode)
@@ -59,11 +58,11 @@ const AvaxPrice = () => {
       const price = await Moralis.Web3API.native.runContractFunction(options);
       // writing numbers in javascript is fun
       const fmtPrice: number = parseFloat((Number(price) * 10**-8).toFixed(2))
-      console.log(fmtPrice);
+      console.log(fmtPrice)
       setPrice(fmtPrice)
       return true
     } catch (e) {
-      console.log(e);
+      console.log(e)
       setPrice(0)
       return false
     }

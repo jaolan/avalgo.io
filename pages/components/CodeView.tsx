@@ -7,7 +7,7 @@ import axios from 'axios';
 import styles from '/styles/CodeView.module.css'
 import { useMoralis } from 'react-moralis';
 import ConnectButton from './ConnectButton';
-
+import Payout from './Payout';
 
 export default function CodeView() {
   const userCode = 'function mul(a, b) {\n  return a * b\n}'
@@ -39,6 +39,8 @@ export default function CodeView() {
   // claim the reward for passing the question
   const claimReward = () => {
     console.log('calling contract and claiming reward...')
+    const reward: number = 40000
+    Payout.claimReward(reward)
   }
 
   return (
