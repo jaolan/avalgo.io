@@ -2,6 +2,9 @@ import React from "react"
 import { Button } from "react-bootstrap"
 import { useMoralis, useMoralisWeb3Api, useNativeBalance } from "react-moralis"
 
+import styles from '/styles/ConnectWallet.module.css'
+import 'bootstrap/dist/css/bootstrap.css'
+
 // Connect Wallet FC
 //  web3 wallet connector supporting metamask, brave and a few others
 //
@@ -32,7 +35,7 @@ const ConnectWallet = () => {
 		<div>
       {isAuthenticated && user ? (
         <>
-          <Button variant="light" onClick={logout}>{user.get('ethAddress').substring(0,6) 
+          <Button variant="danger" className={styles.btn} onClick={logout}>{user.get('ethAddress').substring(0,6) 
                                       + '...' 
                                       + user.get('ethAddress').substring(user.get('ethAddress').length-5,user.get('ethAddress').length-1)}
           </Button>
@@ -41,7 +44,7 @@ const ConnectWallet = () => {
             {/* <h1>Welcome, {user.get('ethAddress')}!</h1> */}
         </>
       ) : (
-        <Button variant="light"
+        <Button variant="danger" className={styles.btn}
           onClick={() => {
             authenticate({signingMessage : 'My Avax dApp auth'});
           }}

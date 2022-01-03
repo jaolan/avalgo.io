@@ -1,42 +1,37 @@
 import React from "react"
-import { Container, Nav, Navbar } from "react-bootstrap"
+import { Nav, Navbar } from "react-bootstrap"
+import Link from 'next/link'
+import ConnectWallet from "./ConnectWallet.component"
 
+import styles from '/styles/Navigation.module.css'
+
+// Navbar component for navigating site
+//
+// Uses react-bootstrap styling
+// Uses nextjs routing
 const Navigation = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav>
-        </Container>
-      </Navbar>
-      <br />
-      <Navbar bg="primary" variant="dark">
-        <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav>
-        </Container>
-      </Navbar>
-
-      <br />
       <Navbar bg="light" variant="light">
-        <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <div className={styles.container}>
+          <Link href='/'>
+            <a className={styles.navLink}>
+              <Navbar.Brand>Avalgo</Navbar.Brand>
+            </a>
+          </Link>
+        </div>
+        
         <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Link href='/code'>
+            <a className={styles.navLink}>
+              <Nav.Item>Code</Nav.Item>
+            </a>
+          </Link>
         </Nav>
-        </Container>
+        <div className={styles.container}>
+          <ConnectWallet/>
+        </div>
       </Navbar>
   </>
   )

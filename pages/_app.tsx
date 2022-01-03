@@ -13,8 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       appId={appId}
       serverUrl={serverUrl}
     >
-      {/* <Navigation /> */}
-      <Navbar />
+      <Navigation/>
       <Component {...pageProps} />
     </MoralisProvider>
   )
