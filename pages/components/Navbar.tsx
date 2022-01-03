@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import styles2 from '/styles/Home.module.css'
 import styles from '/styles/Navbar.module.css'
-import ConnectButton from './ConnectButton';
+import ConnectWallet from './ConnectWallet.component';
 
 const Navbar = () => {
   const [isOpen,setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ const Navbar = () => {
       <ul className={isOpen === false ? 
         styles.navmenu : styles.navmenu +' '+ styles.active}>
         <div className={styles.navitem}>
-          <ConnectButton />
+          <ConnectWallet />
         </div>
       </ul>
       <button className={isOpen === false ? 

@@ -1,9 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { MoralisProvider } from 'react-moralis'
-import ConnectButton from './components/ConnectButton'
-import styles from '../styles/Home.module.css'
 import Navbar from './components/Navbar'
+import Navigation from './components/Navigation'
 
 const appId = process.env.NEXT_PUBLIC_MORALIS_APP_ID as string
 const serverUrl = process.env.NEXT_PUBLIC_MORALIS_SERVER_ID as string
@@ -14,6 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       appId={appId}
       serverUrl={serverUrl}
     >
+      {/* <Navigation /> */}
       <Navbar />
       <Component {...pageProps} />
     </MoralisProvider>
