@@ -6,8 +6,10 @@ import codeStyles from '../styles/CodeView.module.css'
 import AvaxPrice from './components/AvaxPrice'
 import CodeView from './components/CodeView'
 import { useMoralis } from 'react-moralis'
+import logo from './components/logo'
 
 const code: NextPage = () => {
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +18,10 @@ const code: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className={styles.title}>Code</h1>
+      <main className={styles.main}>
+        <h1 className={styles.title}>{logo}</h1>
+        <h1 className={styles.title}>Code</h1>
+      </main>
       <p className={styles.description}>Get the kth largest subarray for the following: [1,2,3,4,5]</p>
       <div className={codeStyles.main}>
       <CodeView />

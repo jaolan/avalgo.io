@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Moralis } from 'moralis';
+import { Button } from "react-bootstrap";
 
+import styles from '/styles/Home.module.css'
+
+// Display AVAX price, tap to refresh
+//
+//  Uses react-bootstrap styling
+//  Smart contract uses Chainlink as a price oracle
 const AvaxPrice = () => {
   const [price, setPrice] = useState<number>(0)
   // time interval for refreshing price component
@@ -69,8 +76,8 @@ const AvaxPrice = () => {
   }
 
   return (
-    <div>
-      <p>AVAX Price: {price}</p>
+    <div className={styles.center}>
+      <Button variant="outline-danger" onClick={handlePrice}>1 🔺 = ${price}</Button>
     </div>
   )
 }

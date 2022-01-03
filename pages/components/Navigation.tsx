@@ -4,12 +4,14 @@ import Link from 'next/link'
 import ConnectWallet from "./ConnectWallet.component"
 
 import styles from '/styles/Navigation.module.css'
+import AvaxPrice from "./AvaxPrice"
 
 // Navbar component for navigating site
 //
 // Uses react-bootstrap styling
 // Uses nextjs routing
 const Navigation = () => {
+  const logo: string = "{🔺}"
 
   return (
     <>
@@ -17,7 +19,7 @@ const Navigation = () => {
         <div className={styles.container}>
           <Link href='/'>
             <a className={styles.navLink}>
-              <Navbar.Brand>Avalgo</Navbar.Brand>
+              <Navbar.Brand>Avalgo {logo}</Navbar.Brand>
             </a>
           </Link>
         </div>
@@ -29,6 +31,13 @@ const Navigation = () => {
             </a>
           </Link>
         </Nav>
+        <div className={styles.container}>
+          <Link href='/'>
+            <a className={styles.navLink}>
+              <AvaxPrice/>
+            </a>
+          </Link>
+        </div>
         <div className={styles.container}>
           <ConnectWallet/>
         </div>

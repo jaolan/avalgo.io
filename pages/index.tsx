@@ -5,9 +5,10 @@ import styles from '../styles/Home.module.css'
 import ConnectWallet from './components/ConnectWallet.component'
 import CodeView from './components/CodeView';
 import AvaxPrice from './components/AvaxPrice';
+import logo from './components/logo'
 
 const Home: NextPage = () => {
-
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +18,9 @@ const Home: NextPage = () => {
       </Head>
       
       <main className={styles.main}>
+        <h1 className={styles.title}>
+          {logo}
+        </h1>
         <h1 className={styles.title}>
           Avalgo
         </h1>
@@ -33,18 +37,11 @@ const Home: NextPage = () => {
         <AvaxPrice />
       </main>
 
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+      <footer className={styles.footer}>
+        <a>
+          made w/ ❤️ by olan.eth
         </a>
-      </footer> */}
+      </footer>
     </div>
   )
 }
