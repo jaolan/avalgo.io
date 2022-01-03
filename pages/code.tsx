@@ -8,12 +8,10 @@ import CodeView from './components/CodeView'
 import { useMoralis } from 'react-moralis'
 
 const code: NextPage = () => {
-  const { user } = useMoralis()
-
   return (
     <div className={styles.container}>
       <Head>
-        <title>Code | AVAX Name</title>
+        <title>Code | Avalgo</title>
         <meta name="description" content="Code" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
