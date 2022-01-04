@@ -76,12 +76,9 @@ const AvaxPrice = () => {
   }
 
   return (
-    <div className={styles.center}>
       <Card border="danger" text="danger" className={styles.avaxPrice}>
         <Card.Body>1 🔺 = ${price}</Card.Body>
       </Card>
-      {/* <Button variant="outline-danger" onClick={handlePrice}>1 🔺 = ${price}</Button> */}
-    </div>
   )
 }
 

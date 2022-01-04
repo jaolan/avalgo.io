@@ -132,6 +132,14 @@
   justify-content: center;
 }
 
+.avaxBounty {
+  /* width: 12rem; */
+  /* max-width: fit-content; */
+  height: 2.5rem;
+  justify-content: center;
+  font-weight: 500;
+}
+
 .avaxPrice :hover {
   color: rgb(189, 27, 27);
 }
