@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Moralis } from 'moralis';
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 import styles from '/styles/Home.module.css'
 
@@ -77,7 +77,10 @@ const AvaxPrice = () => {
 
   return (
     <div className={styles.center}>
-      <Button variant="outline-danger" onClick={handlePrice}>1 🔺 = ${price}</Button>
+      <Card border="danger" text="danger" className={styles.avaxPrice}>
+        <Card.Body>1 🔺 = ${price}</Card.Body>
+      </Card>
+      {/* <Button variant="outline-danger" onClick={handlePrice}>1 🔺 = ${price}</Button> */}
     </div>
   )
 }

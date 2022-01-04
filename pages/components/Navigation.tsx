@@ -32,11 +32,7 @@ const Navigation = () => {
           </Link>
         </Nav>
         <div className={styles.container}>
-          <Link href='/'>
-            <a className={styles.navLink}>
-              <AvaxPrice/>
-            </a>
-          </Link>
+          <AvaxPrice/>
         </div>
         <div className={styles.container}>
           <ConnectWallet/>
