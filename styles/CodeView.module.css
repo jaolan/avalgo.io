@@ -3,6 +3,11 @@
   margin: 4rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
+  /* padding: 0px 12px; */
+  /* margin: 0 20px;   */
+  /* padding: 5px; */
+  margin: 10px;
+  /* border-radius: 10px; */
 }
 
 .center {
@@ -17,4 +22,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.codeView {
+  /* padding: 10 10 10 10px; */
+}
+
+@media only screen and (max-width: 479px) {
+  .codeViewMobile { padding: 10 10 10 10px; }
 }

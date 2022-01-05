@@ -18,14 +18,14 @@ const AvaxPrice = () => {
 
   // Fetch AVAX price from contract every X seconds
   useEffect(() => {
-    // const timer = window.setInterval(() => {
-    //   setCount(count => count + 1)
-    //   handlePrice()
-    // }, 10000);
+    const timer = window.setInterval(() => {
+      setCount(count => count + 1)
+      handlePrice()
+    }, 10000);
 
-    // return () => {
-    //   window.clearInterval(timer);
-    // };
+    return () => {
+      window.clearInterval(timer);
+    };
   }, []);
 
   // Set smartcontract ABI - This will allow us to call chainlink price getter

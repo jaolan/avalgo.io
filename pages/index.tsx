@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import CodeView from './components/CodeView';
-import AvaxPrice from './components/AvaxPrice';
 import logo from './components/logo'
 
 const Home: NextPage = () => {
@@ -33,7 +32,6 @@ const Home: NextPage = () => {
         </p>
 
         <CodeView />
-        <AvaxPrice />
       </main>
 
       <footer className={styles.footer}>

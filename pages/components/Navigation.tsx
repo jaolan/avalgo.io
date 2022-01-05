@@ -31,7 +31,7 @@ const Navigation = () => {
             </a>
           </Link>
         </Nav>
-        <div className={styles.container}>
+        <div className={styles.priceContainer}>
           <AvaxPrice/>
         </div>
         <div className={styles.container}>

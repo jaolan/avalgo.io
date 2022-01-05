@@ -2,6 +2,14 @@
   padding: 10px;
 }
 
+.priceContainer {
+  padding: 10px;
+}
+
+@media only screen and (max-width: 479px) {
+  .priceContainer { display: none !important; }
+}
+
 .navLink {
   font-size: 1.25rem;
   font-weight: 400;

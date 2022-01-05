@@ -8,6 +8,7 @@ import styles from '/styles/CodeView.module.css'
 import { useMoralis } from 'react-moralis';
 import ConnectWallet from './ConnectWallet.component';
 import Payout from './Payout';
+import { Button, ButtonGroup }from 'react-bootstrap'
 
 export default function CodeView() {
   const userCode = 'function mul(a, b) {\n  return a * b\n}'
@@ -45,16 +46,20 @@ export default function CodeView() {
 
   return (
     <div>
-      <CodeMirror
-      value={code}
-      height="200px"
-      theme="dark"
-      extensions={[javascript({ jsx: true }), oneDark]}
-      onChange={(value, viewUpdate) => {
-        setCode(value)
-        // console.log('value:', code)
-      }}
-      />
+      <div className={styles.codeView}>
+        <CodeMirror
+        className={styles.codeViewMobile}
+        value={code}
+        height="200px"
+        width="22rem"
+        theme="dark"
+        extensions={[javascript({ jsx: true }), oneDark]}
+        onChange={(value, viewUpdate) => {
+          setCode(value)
+          // console.log('value:', code)
+        }}
+        />
+      </div>
       {/* Show/hide pass UI */}
       { pass ? (
         <div className={styles.center}>
@@ -75,12 +80,15 @@ export default function CodeView() {
       )}
       { user?.authenticated ? (
         <div className={styles.center}>
-        <button className={styles.submitBtn} onClick={submitCode}>
-          Submit Code
-        </button>
-        <button className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
-          Claim Reward 🔺
-        </button>
+        <ButtonGroup>
+          <Button variant="danger" className={styles.submitBtn} onClick={submitCode}>
+            Submit Code
+          </Button>
+          {/* <p style={{ padding: '1px'}} /> */}
+          <Button variant="danger" className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
+            Claim AVAX 🔺
+          </Button>
+        </ButtonGroup>
       </div>
       ) : (
         <div className={styles.center}>
