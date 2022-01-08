@@ -10,7 +10,6 @@ import { useMoralis } from 'react-moralis';
 import ConnectWallet from './ConnectWallet.component';
 import Payout from './Payout';
 import { Button, ButtonGroup }from 'react-bootstrap'
-import logo from './logo';
 import Bounty from './Bounty';
 
 const CodeView = () => {
@@ -23,6 +22,7 @@ const CodeView = () => {
   const [pass, setPass] = useState<boolean>(false)
   const [showFail, setShowFail] = useState<boolean>(false)
   const [count, setCount] = useState<number>(1)
+  const [reward, setReward] = useState<number>(0.04)
   const [numQuestions, setNumQuestions] = useState<number>(2)
 
   const { user } = useMoralis()
@@ -58,18 +58,30 @@ const CodeView = () => {
       .get(API_URL + 'questions/' + question.toString())
       .then((res) => {
         console.log(res.data)
+
+        const title = res.data.title
+        const reward = res.data.reward
         // Set the CodeView code as question + template + testcase
-        setQuestionTitle(res.data.title)
-        setCode(
-          '// ' + res.data.title + '\n'
-          + '// reward: 🔺' + res.data.reward + '\n\n'
-          + res.data.template
-          + res.data.testcase
-        )
+        const code = '// ' + title + '\n'
+        + '// reward: 🔺' + reward + '\n\n'
+        + res.data.template
+        + res.data.testcase
+        // set all data so we may update UI
+        setData(title, code, reward)
+      
       })
       .catch((e) => {
         console.log('Error getting question.', e)
       })
+  }
+
+  const setData = (questionTitle: string, 
+                    code: string, 
+                    reward: number
+                  ) => {
+      setQuestionTitle(questionTitle)
+      setCode(code)
+      setReward(reward)
   }
 
   // claim the reward for passing the question
@@ -83,7 +95,7 @@ const CodeView = () => {
     <div>
       <p className={homeStyles.description}>{questionTitle}</p>
       <div className={homeStyles.center}>
-        <Bounty/>
+        <Bounty nativeReward={reward} />
       </div>
       <div className={styles.codeView}>
         <CodeMirror

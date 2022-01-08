@@ -7,9 +7,15 @@ import styles from '/styles/Home.module.css'
 // Style with react-bootstrap
 // Fetch AVAX price and set
 //
+
+// interface for nativeBounty passing
+interface bountyProps {
+  nativeReward: number
+}
+
 // TODO: use getters to get each question's bounty from backend
-const Bounty = () => {
-  const [nativeBounty, setNativeBounty] = useState<number>(0)
+const Bounty: React.FC<bountyProps> = ({nativeReward}) => {
+  // const [nativeBounty, setNativeBounty] = useState<number>(0)
 
   // TODO: Fetch native bounty from question backend
   useEffect(() => {
@@ -19,12 +25,12 @@ const Bounty = () => {
   // TODO: Fetch native bounty from question backend for specific question
   const getBounty = (question: number) => {
     const bounty: number = 0.04
-    setNativeBounty(bounty)
+    // setNativeBounty(bounty)
   }
 
   return (
       <Card border="danger" text="danger" className={styles.avaxBounty}>
-          <Card.Body>Bounty: 🔺{nativeBounty}</Card.Body>
+          <Card.Body>Bounty: 🔺{nativeReward}</Card.Body>
       </Card>
   )
 }
