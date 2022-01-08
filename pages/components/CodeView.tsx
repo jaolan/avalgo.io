@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark }from './oneDarkTheme';
@@ -28,6 +28,11 @@ const CodeView = () => {
   const { user } = useMoralis()
 
   const API_URL = 'http://localhost:80/'
+
+  useEffect(() => {
+    console.log(count, numQuestions)
+    getQuestion(count)    
+  }, []);
 
   // submit code to 'backend'
   const submitCode = () => {
@@ -130,23 +135,46 @@ const CodeView = () => {
         <div/>
       )}
       { user?.authenticated ? (
+        <div>
+          <div className={styles.center}>
+          <ButtonGroup>
+            <Button variant="danger" className={styles.submitBtn} onClick={submitCode}>
+              Submit Code
+            </Button>
+            {/* <p style={{ padding: '1px'}} /> */}
+            <Button variant="danger" className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
+              Claim AVAX 🔺
+            </Button>
+          </ButtonGroup>
+        </div>
         <div className={styles.center}>
-        <ButtonGroup>
-          <Button variant="danger" className={styles.submitBtn} onClick={submitCode}>
-            Submit Code
+          <ButtonGroup>
+          <Button variant="danger" className={styles.submitBtn} onClick={() => {
+              if(count > 1) {
+                setCount(count-1)
+                console.log('count: ', count)
+                getQuestion(count-1)
+                setPass(false)
+                setShowFail(false)
+              }
+            }}
+          >
+            ⬅️ Prev
           </Button>
-          {/* <p style={{ padding: '1px'}} /> */}
-          <Button variant="danger" className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
-            Claim AVAX 🔺
+          <Button variant="danger" className={styles.submitBtn} onClick={() => {
+              if(count < numQuestions) {
+                setCount(count+1)
+                console.log('count: ', count)
+                getQuestion(count+1)
+                setPass(false)
+                setShowFail(false)
+              }
+            }}
+          >
+            Next ➡
           </Button>
-        </ButtonGroup>
-        <Button variant="danger" className={styles.submitBtn} onClick={() => {
-            count < numQuestions ? setCount(count+1) : setCount(count)
-            getQuestion(count)
-          }}
-        >
-          Next ➡
-        </Button>
+          </ButtonGroup>
+        </div>
       </div>
       ) : (
         <div className={styles.center}>
