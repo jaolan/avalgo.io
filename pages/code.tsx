@@ -29,8 +29,6 @@ const code: NextPage = () => {
       <CodeView />
       </div>
     </div>
-
-
   )
 }
 

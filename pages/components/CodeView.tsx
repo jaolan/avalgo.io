@@ -9,6 +9,7 @@ import { useMoralis } from 'react-moralis';
 import ConnectWallet from './ConnectWallet.component';
 import Payout from './Payout';
 import { Button, ButtonGroup }from 'react-bootstrap'
+import { stringify } from 'querystring';
 
 export default function CodeView() {
   const userCode = 'function mul(a, b) {\n  return a * b\n}'
@@ -20,10 +21,12 @@ export default function CodeView() {
   const [showFail, setShowFail] = useState<boolean>(false)
   const { user } = useMoralis()
 
+  const API_URL = 'http://localhost:80/'
+
   // submit code to 'backend'
   const submitCode = () => {
     axios
-      .post('http://localhost:80/js', {code})
+      .post(API_URL + 'js', {code})
       .then((res) => {
         console.log(res)
         // set pass/fail, set/hide fail UI to render
@@ -34,6 +37,24 @@ export default function CodeView() {
           setPass(false)
           setShowFail(true)
         }  
+      })
+  }
+
+  // GET question w/ particular ID. Gives access to:
+  // 
+  // "question1":{
+  //   "title":"Create a function to multiply two numbers.",
+  //   "template":"function mul(a, b) {\n  return a * b\n}",
+  //   "testcase":"\n\n// -- Do not write below this line! --\nconst args = process.argv.slice(2)\nconst\n  a = args[0],\n  b = args[1],\n  res = args[2]\nconsole.log(res == mul(a,b))",
+  //   "reward":0.4
+  const getQuestion = (question: number) => {
+    axios
+      .get(API_URL + 'questions/' + question.toString())
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((e) => {
+        console.log('Error getting question.', e)
       })
   }
 
@@ -50,8 +71,8 @@ export default function CodeView() {
         <CodeMirror
         className={styles.codeViewMobile}
         value={code}
-        height="200px"
-        width="22rem"
+        height="250px"
+        width="30rem"
         theme="dark"
         extensions={[javascript({ jsx: true }), oneDark]}
         onChange={(value, viewUpdate) => {
@@ -89,6 +110,10 @@ export default function CodeView() {
             Claim AVAX 🔺
           </Button>
         </ButtonGroup>
+        <Button onClick={() => {
+            getQuestion(1)
+          }}
+        />
       </div>
       ) : (
         <div className={styles.center}>
