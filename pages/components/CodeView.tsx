@@ -1,24 +1,30 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark }from './oneDarkTheme';
 import axios from 'axios';
 
 import styles from '/styles/CodeView.module.css'
+import homeStyles from '/styles/Home.module.css'
 import { useMoralis } from 'react-moralis';
 import ConnectWallet from './ConnectWallet.component';
 import Payout from './Payout';
 import { Button, ButtonGroup }from 'react-bootstrap'
-import { stringify } from 'querystring';
+import logo from './logo';
+import Bounty from './Bounty';
 
-export default function CodeView() {
+const CodeView = () => {
   const userCode = 'function mul(a, b) {\n  return a * b\n}'
   const testCode = '\n\n// -- Do not write below this line! --\nconst args = process.argv.slice(2)\nconst\n  a = args[0],\n  b = args[1],\n  res = args[2]\nconsole.log(res == mul(a,b))'
 
   // set states for UI
+  const [questionTitle, setQuestionTitle] = useState<string>('Get the kth largest subarray for the following: [1,2,3,4,5]')
   const [code, setCode] = useState<string>(userCode + testCode)
   const [pass, setPass] = useState<boolean>(false)
   const [showFail, setShowFail] = useState<boolean>(false)
+  const [count, setCount] = useState<number>(1)
+  const [numQuestions, setNumQuestions] = useState<number>(2)
+
   const { user } = useMoralis()
 
   const API_URL = 'http://localhost:80/'
@@ -40,7 +46,7 @@ export default function CodeView() {
       })
   }
 
-  // GET question w/ particular ID. Gives access to:
+  // GET question w/ particular ID. Set state to that question. Gives access to:
   // 
   // "question1":{
   //   "title":"Create a function to multiply two numbers.",
@@ -52,6 +58,14 @@ export default function CodeView() {
       .get(API_URL + 'questions/' + question.toString())
       .then((res) => {
         console.log(res.data)
+        // Set the CodeView code as question + template + testcase
+        setQuestionTitle(res.data.title)
+        setCode(
+          '// ' + res.data.title + '\n'
+          + '// reward: 🔺' + res.data.reward + '\n\n'
+          + res.data.template
+          + res.data.testcase
+        )
       })
       .catch((e) => {
         console.log('Error getting question.', e)
@@ -67,6 +81,10 @@ export default function CodeView() {
 
   return (
     <div>
+      <p className={homeStyles.description}>{questionTitle}</p>
+      <div className={homeStyles.center}>
+        <Bounty/>
+      </div>
       <div className={styles.codeView}>
         <CodeMirror
         className={styles.codeViewMobile}
@@ -110,10 +128,13 @@ export default function CodeView() {
             Claim AVAX 🔺
           </Button>
         </ButtonGroup>
-        <Button onClick={() => {
-            getQuestion(1)
+        <Button variant="danger" className={styles.submitBtn} onClick={() => {
+            count < numQuestions ? setCount(count+1) : setCount(count)
+            getQuestion(count)
           }}
-        />
+        >
+          Next ➡
+        </Button>
       </div>
       ) : (
         <div className={styles.center}>
@@ -124,3 +145,5 @@ export default function CodeView() {
     </div>
   );
 }
+
+export default CodeView

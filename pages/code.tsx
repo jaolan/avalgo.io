@@ -6,8 +6,27 @@ import AvaxPrice from './components/AvaxPrice'
 import CodeView from './components/CodeView'
 import logo from './components/logo'
 import Bounty from './components/Bounty'
+import axios from 'axios'
+import { useState } from 'react'
 
 const code: NextPage = () => {
+  const API_URL = 'http://localhost:80/'
+  const [question, setQuestion] = useState<string>('Get the kth largest subarray for the following: [1,2,3,4,5]')
+  
+ // GET question title w/ particular ID. 
+  const getQuestion = (question: number) => {
+    axios
+      .get(API_URL + 'questions/' + question.toString())
+      .then((res) => {
+        console.log(res.data)
+        // Set the CodeView code as question + template + testcase
+        setQuestion(res.data.title
+        )
+      })
+      .catch((e) => {
+        console.log('Error getting question.', e)
+      })
+  }
   
   return (
     <div className={styles.container}>
@@ -21,10 +40,6 @@ const code: NextPage = () => {
         <h1 className={styles.title}>{logo}</h1>
         <h1 className={styles.title}>Code</h1>
       </main>
-      <p className={styles.description}>Get the kth largest subarray for the following: [1,2,3,4,5]</p>
-      <div className={styles.center}>
-        <Bounty/>
-      </div>
       <div className={codeStyles.main}>
       <CodeView />
       </div>
