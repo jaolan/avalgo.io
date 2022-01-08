@@ -13,6 +13,7 @@ import { Button, ButtonGroup }from 'react-bootstrap'
 import Bounty from './Bounty';
 
 const CodeView = () => {
+  // note: these two used to test when node backend is off
   const userCode = 'function mul(a, b) {\n  return a * b\n}'
   const testCode = '\n\n// -- Do not write below this line! --\nconst args = process.argv.slice(2)\nconst\n  a = args[0],\n  b = args[1],\n  res = args[2]\nconsole.log(res == mul(a,b))'
 
@@ -37,7 +38,7 @@ const CodeView = () => {
   // submit code to 'backend'
   const submitCode = () => {
     axios
-      .post(API_URL + 'js', {code})
+      .post(API_URL + 'js/' + count.toString(), {code})
       .then((res) => {
         console.log(res)
         // set pass/fail, set/hide fail UI to render
@@ -70,7 +71,7 @@ const CodeView = () => {
         const code = '// ' + title + '\n'
         + '// reward: 🔺' + reward + '\n\n'
         + res.data.template
-        + res.data.testcase
+        // + res.data.testcase
         // set all data so we may update UI
         setData(title, code, reward)
       
