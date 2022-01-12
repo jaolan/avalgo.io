@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0
 
 pragma solidity >=0.7.0 <0.9.0;
+// use openzeppelin Ownable template
+// where methods w/ onlyOwner can only be called by owner
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Xfer {
     constructor() payable {}
