@@ -3,6 +3,7 @@ import { Moralis } from 'moralis';
 class Payout {
   // we need the claim amount and ABI
   constructor() {
+
   }
 
 
@@ -78,13 +79,27 @@ class Payout {
       };
       // The below moralis func will NOT run in typescript as of 1/1/2022, use ignore
       // @ts-ignore
-      const res = await Moralis.Web3API.native.runContractFunction(options);
+      // const res = await Moralis.Web3API.native.runContractFunction(options);
+     
+      Moralis.Web3.authenticate()
+      const withdraw = async () => {
+        // @ts-ignore
+        const res = await Moralis.Web3.executeFunction(options)
+        console.log(res)
+      }
+      withdraw()
+      // Moralis.Web3.authenticate().then( async function (user) {
+      //   // @ts-ignore
+      //   const res = await Moralis.Web3.executeFunction(options)
+      //   console.log(res)
+      // })
+        
     } catch (e) {
       console.log('There was an error claiming the reward, please try again later')
       console.log(e);
     }
   }
-  
+
 }
 
 export default new Payout()
