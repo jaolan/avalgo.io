@@ -81,18 +81,11 @@ class Payout {
       // @ts-ignore
       // const res = await Moralis.Web3API.native.runContractFunction(options);
      
-      Moralis.Web3.authenticate()
-      const withdraw = async () => {
+      Moralis.Web3.authenticate().then( async function (user) {
         // @ts-ignore
         const res = await Moralis.Web3.executeFunction(options)
         console.log(res)
-      }
-      withdraw()
-      // Moralis.Web3.authenticate().then( async function (user) {
-      //   // @ts-ignore
-      //   const res = await Moralis.Web3.executeFunction(options)
-      //   console.log(res)
-      // })
+      })
         
     } catch (e) {
       console.log('There was an error claiming the reward, please try again later')
