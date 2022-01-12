@@ -14,7 +14,7 @@ contract Xfer is Ownable {
     mapping(address => uint) public lockTime;
 
     // send avax to contract
-    function sendEther(address payable recipient) external payable{
+    function sendEther(address payable recipient) external payable onlyOwner{
         (bool success,) = recipient.call{ value: msg.value }("");
         require(success, "Send failed!");
     }
