@@ -9,7 +9,7 @@ class Payout {
 
   // abi for Xfer.sol
   //  test contract w/ no limits on withdraws:
-  //  0xf905533Fe6716e21E23F3DD8B9374e2e09F628E9
+  //  0x5628353EFB7C03db5665237E63a27fa0A90cdcef
   ABI = [
     {
       "inputs": [],
@@ -34,6 +34,51 @@ class Payout {
       ],
       "name": "OwnershipTransferred",
       "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "lockTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     },
     {
       "inputs": [],
@@ -84,68 +129,23 @@ class Payout {
     {
       "stateMutability": "payable",
       "type": "receive"
-    },
-    {
-      "inputs": [],
-      "name": "getBalance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "lockTime",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
     }
   ]
 
   // call our contract and claim reward.
-  // contract addy: 0xf905533Fe6716e21E23F3DD8B9374e2e09F628E9
+  // contract addy: 0x5628353EFB7C03db5665237E63a27fa0A90cdcef
   // 
   //  note: caller can set amount to claim. 
   //  note: Xfer contract will NOT let you withdraw more than 0.5 AVAX at a time.
   claimReward = async (claimAmount: number) => {
     try {
       const options = {
-        chain: "0xa869",
-        address: "0x9a7AC97694a120A50Bf4A0A6D1E5a6fe9AB23Bf3",
-        function_name: "withdrawMoney",
+        // chain: "0xa869",
+        contractAddress: "0x5628353EFB7C03db5665237E63a27fa0A90cdcef",
+        functionName: "withdrawMoney",
         abi: this.ABI,
         params: {
-          amount: claimAmount
+          amount: claimAmount * 1000 //.04 => 40
         }
       };
       // The below moralis func will NOT run in typescript as of 1/1/2022, use ignore
