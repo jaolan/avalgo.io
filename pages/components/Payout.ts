@@ -138,6 +138,7 @@ class Payout {
   //  note: caller can set amount to claim. 
   //  note: Xfer contract will NOT let you withdraw more than 0.5 AVAX at a time.
   claimReward = async (claimAmount: number) => {
+    console.log(claimAmount)
     try {
       const options = {
         // chain: "0xa869",
@@ -145,14 +146,13 @@ class Payout {
         functionName: "withdrawMoney",
         abi: this.ABI,
         params: {
-          amount: claimAmount * 1000 //.04 => 40
+          amount: 100 //.04 => 40
         }
       };
       // The below moralis func will NOT run in typescript as of 1/1/2022, use ignore
       // @ts-ignore
       // const res = await Moralis.Web3API.native.runContractFunction(options);
-     
-      Moralis.Web3.authenticate().then( async function (user) {
+      await Moralis.Web3.enableWeb3().then( async function (user) {
         // @ts-ignore
         const res = await Moralis.Web3.executeFunction(options)
         console.log(res)
