@@ -18,12 +18,12 @@ const AvaxPrice = () => {
 
   // Fetch AVAX price from contract every X seconds
   useEffect(() => {
+    // set a minor delay to fetch price the first time
     setTimeout(function (){
-  
-      // Something you want delayed.
       handlePrice()
     }, 10);
 
+    // check price subsequently every 10 seconds
     const timer = window.setInterval(() => {
       setCount(count => count + 1)
       handlePrice()
