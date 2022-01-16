@@ -98,17 +98,17 @@ const CodeView = () => {
   }
 
   return (
-    <div>
+    <div className={styles.codeViewMobile}>
       <p className={homeStyles.description}>{questionTitle}</p>
       <div className={homeStyles.center}>
         <Bounty nativeReward={reward} />
       </div>
       <div className={styles.codeView}>
         <CodeMirror
-        className={styles.codeViewMobile}
+        // className={styles.codeViewMobile}
         value={code}
         height="250px"
-        width="30rem"
+        width="auto"
         theme="dark"
         extensions={[javascript({ jsx: true }), oneDark]}
         onChange={(value, viewUpdate) => {

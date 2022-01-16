@@ -18,8 +18,7 @@
   /* min-height: 100vh; */
   padding: 4rem 0;
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   /* font-size: 0.75rem; */
@@ -27,8 +26,15 @@
 
 .codeView {
   /* padding: 10 10 10 10px; */
+  /* display: flex; */
+  /* padding: 10px; */
+  background-color: red;
+  flex: 1;
 }
 
 @media only screen and (max-width: 479px) {
-  .codeViewMobile { padding: 10 10 10 10px; }
+  .codeViewMobile { 
+    width: 100%;
+    height: 100%;
+   }
 }
