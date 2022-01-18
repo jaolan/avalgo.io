@@ -35,10 +35,15 @@ const CodeView = () => {
     getQuestion(count)    
   }, []);
 
-  // submit code to 'backend'
+  // submit code to 'backend', send user's address for updating question status
   const submitCode = () => {
+    var userAddress = null
+
+    // if no user addr, user is not signed in. UI + state require signin so we're covered
+    if (user) userAddress = user.get('ethAddress')
+
     axios
-      .post(API_URL + 'js/' + count.toString(), {code})
+      .post(API_URL + 'js/' + count.toString(), {code, userAddress})
       .then((res) => {
         console.log(res)
         // set pass/fail, set/hide fail UI to render
