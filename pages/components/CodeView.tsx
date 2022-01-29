@@ -24,7 +24,7 @@ const CodeView = () => {
   const [showFail, setShowFail] = useState<boolean>(false)
   const [count, setCount] = useState<number>(1)
   const [reward, setReward] = useState<number>(0.04)
-  const [numQuestions, setNumQuestions] = useState<number>(2)
+  const [numQuestions, setNumQuestions] = useState<number>(6)
 
   const { user } = useMoralis()
 
