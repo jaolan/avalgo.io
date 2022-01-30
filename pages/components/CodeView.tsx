@@ -28,7 +28,9 @@ const CodeView = () => {
 
   const { user } = useMoralis()
 
-  const API_URL = 'http://localhost:80/'
+  // const API_URL = 'http://localhost:80/'
+  const API_URL = 'https://s6wsreqrlb.execute-api.us-east-1.amazonaws.com'
+  // /get-question-data?qId=1&appId=69420'
 
   useEffect(() => {
     console.log(count, numQuestions)
@@ -65,8 +67,12 @@ const CodeView = () => {
   //   "testcase":"\n\n// -- Do not write below this line! --\nconst args = process.argv.slice(2)\nconst\n  a = args[0],\n  b = args[1],\n  res = args[2]\nconsole.log(res == mul(a,b))",
   //   "reward":0.4
   const getQuestion = (question: number) => {
+    const q: string  = question.toString()
+    const appId = process.env.NEXT_PUBLIC_APP_ID?.toString()
+    const params: string = `qId=${q}&appId=${appId}`
     axios
-      .get(API_URL + 'questions/' + question.toString())
+      // .get(API_URL + 'questions/' + question.toString())
+      .get(API_URL + `/get-question-data?${params}`)
       .then((res) => {
         console.log(res.data)
 
