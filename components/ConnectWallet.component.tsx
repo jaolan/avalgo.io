@@ -34,7 +34,7 @@ const ConnectWallet = () => {
 		<div>
       {isAuthenticated && user ? (
         <>
-          <Button variant="danger" className={styles.btn} onClick={logout}>{user.get('ethAddress').substring(0,6) 
+          <Button variant="danger" onClick={logout}>{user.get('ethAddress').substring(0,6) 
                                       + '...' 
                                       + user.get('ethAddress').substring(user.get('ethAddress').length-5,user.get('ethAddress').length-1)}
           </Button>
@@ -43,7 +43,7 @@ const ConnectWallet = () => {
             {/* <h1>Welcome, {user.get('ethAddress')}!</h1> */}
         </>
       ) : (
-        <Button variant="danger" className={styles.btn}
+        <Button variant="danger"
           onClick={() => {
             // use walletconnect on mobile displays
             const onMobile = window.screen.width <= 768
