@@ -3,9 +3,20 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import CodeView from '../components/CodeView';
 import logo from '../components/logo'
+import MintButton from '../components/MintButton';
+import { Button } from "react-bootstrap"
+import { useRouter } from 'next/router';
+import AvgoPass from '../components/AvgoPassCard.component';
 
 const Home: NextPage = () => {
+
+  // Next router to push Code
+  const router = useRouter()
   
+  const redirectUser = () => {
+    router.push('/code')
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +24,6 @@ const Home: NextPage = () => {
         <meta name="description" content="Avalgo - A free, play-to-earn coding dApp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
       <main className={styles.main}>
         <h1 className={styles.title}>
           {logo}
@@ -35,14 +45,24 @@ const Home: NextPage = () => {
         </h1>
         <div className={styles.centeredContainer}>
         <p className={styles.centeredContainerMobile}>
-          With Avalgo, you connect your Avalanche wallet to play. 
-          Once you connect, you can answer coding and algorithm quesitons to aim for rewards.
+          To play and claim Avalgo rewards, you need an AvalgoPass NFT. 
+          These are currently free to claim (❤️). Claim one below.
+          <p/>
+            <MintButton/>
+          <p/>
+        </p>
+        <p>
+          Once you connect your wallet, you can answer coding and algorithm quesitons to aim for rewards!
           Answering questions correctly will earn you a bounty - the harder the question, the larger the bounty!
           All rewards are paid in the native currency, AVAX.
         </p>
         </div>
-
-        <CodeView />
+        <h1 className={styles.description2}>
+          Are you ready?
+        </h1>
+        <Button variant="danger" onClick = {redirectUser}> Let's Go Code! 
+        </Button>
+        {/* <CodeView /> */}
       </main>
 
       <footer className={styles.footer}>

@@ -5,6 +5,7 @@ import ConnectWallet from "./ConnectWallet.component"
 
 import styles from '/styles/Navigation.module.css'
 import AvaxPrice from "./AvaxPrice"
+import AvgoPass from "./AvgoPassCard.component"
 
 // Navbar component for navigating site
 //
@@ -33,6 +34,9 @@ const Navigation = () => {
         </Nav>
         <div className={styles.priceContainer}>
           <AvaxPrice/>
+        </div>
+        <div className={styles.avgoPassContainer}>
+          <AvgoPass/>  
         </div>
         <div className={styles.container}>
           <ConnectWallet/>

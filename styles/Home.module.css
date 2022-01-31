@@ -56,6 +56,23 @@
   font-size: 1.5rem;
 }
 
+.description2 {
+  /* margin: 2rem 0;   */
+  padding-bottom: 0px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.description3 {
+  margin: 2rem 0;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
 .center {
   text-align: center;
 }

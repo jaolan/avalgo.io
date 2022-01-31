@@ -10,6 +10,10 @@
   .priceContainer { display: none !important; }
 }
 
+@media only screen and (max-width: 679px) {
+  .avgoPassContainer { display: none !important; }
+}
+
 .navLink {
   font-size: 1.25rem;
   font-weight: 400;

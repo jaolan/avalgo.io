@@ -1,7 +1,6 @@
 import React from "react"
 import { Button } from "react-bootstrap"
 import { useMoralis, useMoralisWeb3Api, useNativeBalance } from "react-moralis"
-
 import styles from '/styles/ConnectWallet.module.css'
 import 'bootstrap/dist/css/bootstrap.css'
 

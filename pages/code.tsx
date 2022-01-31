@@ -6,6 +6,7 @@ import CodeView from '../components/CodeView'
 import logo from '../components/logo'
 import axios from 'axios'
 import React, { useState } from 'react'
+import AlertDismissable from '../components/DismissableAlert'
 
 const Code: NextPage = () => {
   const API_URL = 'https://s6wsreqrlb.execute-api.us-east-1.amazonaws.com'
@@ -41,6 +42,10 @@ const Code: NextPage = () => {
         <h1 className={styles.title}>{logo}</h1>
         <h1 className={styles.title}>Code</h1>
         <div className={codeStyles.main}>
+        <AlertDismissable 
+        title="AvalgoPass required to claim rewards!" 
+        body="Since you don't have one already, claim an AvalgoPass free below (just pay gas):"
+        />
         <CodeView />
         </div>
       </main>
