@@ -4,6 +4,7 @@ import { useMoralis, useMoralisWeb3Api, useNativeBalance } from "react-moralis"
 
 import styles from '/styles/ConnectWallet.module.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import useCheckMobileScreen from "./CheckMobile"
 
 // Connect Wallet FC
 //  web3 wallet connector supporting metamask, brave and a few others
@@ -46,7 +47,12 @@ const ConnectWallet = () => {
       ) : (
         <Button variant="danger" className={styles.btn}
           onClick={() => {
-            authenticate({signingMessage : 'My Avax dApp auth'});
+            // use walletconnect on mobile displays
+            const onMobile = window.screen.width <= 768
+            onMobile 
+              ? authenticate({signingMessage : 'Authenticate to play Avalgo', provider: 'walletconnect'})
+              : authenticate({signingMessage : 'Authenticate to play Avalgo',});
+            
           }}
         >
           Connect Wallet
