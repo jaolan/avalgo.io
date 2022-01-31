@@ -20,7 +20,7 @@ const TestnetAlert: React.FC<alertProps> = ({title, body}) => {
           </p>
           <a href='https://coinslauncher.com/add-custom-networks-to-metamask/'
             target="_blank" 
-            rel="noopener"
+            rel="noreferrer"
           > 
             How to add the AVAX Fuji network to your wallet
           </a>
