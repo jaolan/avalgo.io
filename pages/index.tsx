@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import CodeView from './components/CodeView';
-import logo from './components/logo'
+import CodeView from '../components/CodeView';
+import logo from '../components/logo'
 
 const Home: NextPage = () => {
   
