@@ -25,6 +25,7 @@ const CodeView = () => {
   const [count, setCount] = useState<number>(1)
   const [reward, setReward] = useState<number>(0.04)
   const [numQuestions, setNumQuestions] = useState<number>(6)
+  const [btnText, setBtnText] = useState<string>('Submit Code')
 
   const { user } = useMoralis()
 
@@ -40,6 +41,7 @@ const CodeView = () => {
 
   // submit code to 'backend', send user's address for updating question status
   const submitCode = () => {
+    setBtnText('Loading...')
     var userAddress = null
 
     // if no user addr, user is not signed in. UI + state require signin so we're covered
@@ -65,6 +67,7 @@ const CodeView = () => {
           setPass(false)
           setShowFail(true)
         }  
+        setBtnText('Submit Code')
       })
   }
 
@@ -160,7 +163,7 @@ const CodeView = () => {
           <div className={styles.center}>
           <ButtonGroup>
             <Button variant="danger" className={styles.submitBtn} onClick={submitCode}>
-              Submit Code
+              {btnText}
             </Button>
             {/* <p style={{ padding: '1px'}} /> */}
             <Button variant="danger" className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
