@@ -10,18 +10,21 @@ import axios from 'axios'
 import { useState } from 'react'
 
 const code: NextPage = () => {
-  const API_URL = 'http://localhost:80/'
+  const API_URL = 'https://s6wsreqrlb.execute-api.us-east-1.amazonaws.com'
   const [question, setQuestion] = useState<string>('Get the kth largest subarray for the following: [1,2,3,4,5]')
   
  // GET question title w/ particular ID. 
   const getQuestion = (question: number) => {
+    const q: string  = question.toString()
+    const appId = process.env.NEXT_PUBLIC_APP_ID?.toString()
+    const params: string = `qId=${q}&appId=${appId}`
     axios
-      .get(API_URL + 'questions/' + question.toString())
+      .get(API_URL + `/get-question-data?${params}`)
       .then((res) => {
         console.log(res.data)
-        // Set the CodeView code as question + template + testcase
-        setQuestion(res.data.title
-        )
+
+        const title = res.data.title
+        setQuestion(title)
       })
       .catch((e) => {
         console.log('Error getting question.', e)

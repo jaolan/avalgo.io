@@ -44,8 +44,16 @@ const CodeView = () => {
     // if no user addr, user is not signed in. UI + state require signin so we're covered
     if (user) userAddress = user.get('ethAddress')
 
+    const q: string  = count.toString()
+    const appId = process.env.NEXT_PUBLIC_APP_ID?.toString()
+    const params = {
+      "userAddress": userAddress,
+      "questionId": q,
+      "code": code,
+      "appId": appId
+    }
     axios
-      .post(API_URL + 'js/' + count.toString(), {code, userAddress})
+      .post(API_URL + `/avalgo-compiler`, JSON.stringify(params))
       .then((res) => {
         console.log(res)
         // set pass/fail, set/hide fail UI to render
