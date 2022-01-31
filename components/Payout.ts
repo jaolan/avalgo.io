@@ -155,7 +155,7 @@ class Payout {
       await Moralis.Web3.enableWeb3().then( async function (user) {
         // @ts-ignore
         const res = await Moralis.Web3.executeFunction(options)
-        console.log(res)
+        // console.log(res)
       })
         
     } catch (e) {

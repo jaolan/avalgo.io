@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '/styles/Home.module.css'
 import logo from '../components/logo'
 import MintButton from '../components/MintButton';
 import { Button } from "react-bootstrap"
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   // Next router to push Code
   const router = useRouter()
   const { chainId } = useMoralis()
-  
+  const correctChain = chainId == '0xa869'
   const redirectUser = () => {
     router.push('/code')
   }
@@ -25,18 +25,15 @@ const Home: NextPage = () => {
         <meta name="description" content="Avalgo - A free, play-to-earn coding dApp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.testnet}>
-        { () => {
-            if(chainId == '0xa869') {
-              <TestnetAlert 
-              title="Avalgo is on the Fuji Testnet!"
-              body="Ensure your network is the Avalanche Fuji Testnet before connecting your wallet."
-              />  
-            }
-          }
-        }
-        
-      </div>
+      { !correctChain 
+        ? <div className={styles.testnet}>
+            <TestnetAlert 
+            title="Avalgo is on the Fuji Testnet!"
+            body="Ensure your network is the Avalanche Fuji Testnet before connecting your wallet."
+            />  
+          </div> 
+        : <div/>
+      }
       <main className={styles.main}>
         <h1 className={styles.title}>
           {logo}
@@ -59,7 +56,7 @@ const Home: NextPage = () => {
         <div className={styles.centeredContainer}>
         <p className={styles.centeredContainerMobile}>
           To play and claim Avalgo rewards, you need an AvalgoPass NFT. 
-          These are currently free to claim (❤️). Claim one below.
+          These are currently free to mint (pay gas), claim one below!
           <p/>
             <MintButton/>
           <p/>

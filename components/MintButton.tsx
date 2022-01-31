@@ -506,7 +506,7 @@ const MintButton = () => {
       await Moralis.Web3.enableWeb3().then( async function (user) {
         // @ts-ignore
         const res = await Moralis.Web3.executeFunction(options)
-        console.log(res)
+        // console.log(res)
       })
         
     } catch (e) {
@@ -517,7 +517,7 @@ const MintButton = () => {
 
 	return(
       <Button variant="danger" className={styles.btn} onClick={mint}>
-        Claim Free AvalgoPass NFT
+        Mint AvalgoPass (Free)
       </Button>
 	)
 }

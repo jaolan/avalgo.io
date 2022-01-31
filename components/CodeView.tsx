@@ -9,7 +9,7 @@ import homeStyles from '/styles/Home.module.css'
 import { useMoralis } from 'react-moralis';
 import ConnectWallet from './ConnectWallet.component';
 import Payout from './Payout';
-import { Button, ButtonGroup }from 'react-bootstrap'
+import { Alert, Button, ButtonGroup }from 'react-bootstrap'
 import Bounty from './Bounty';
 
 const CodeView = () => {
@@ -202,7 +202,7 @@ const CodeView = () => {
       </div>
       ) : (
         <div className={styles.center}>
-          <h1> Answer and claim AVAX rewards by connecting your wallet!</h1>
+          <Alert variant="danger"> Answer and claim AVAX rewards by connecting your wallet!</Alert>
           <ConnectWallet />
         </div>
       )}
