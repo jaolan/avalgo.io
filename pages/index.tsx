@@ -1,17 +1,18 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import CodeView from '../components/CodeView';
 import logo from '../components/logo'
 import MintButton from '../components/MintButton';
 import { Button } from "react-bootstrap"
 import { useRouter } from 'next/router';
-import AvgoPass from '../components/AvgoPassCard.component';
+import TestnetAlert from '../components/TestnetAlert';
+import { useMoralis } from "react-moralis"
 
 const Home: NextPage = () => {
 
   // Next router to push Code
   const router = useRouter()
+  const { chainId } = useMoralis()
   
   const redirectUser = () => {
     router.push('/code')
@@ -24,6 +25,18 @@ const Home: NextPage = () => {
         <meta name="description" content="Avalgo - A free, play-to-earn coding dApp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className={styles.testnet}>
+        { () => {
+            if(chainId == '0xa869') {
+              <TestnetAlert 
+              title="Avalgo is on the Fuji Testnet!"
+              body="Ensure your network is the Avalanche Fuji Testnet before connecting your wallet."
+              />  
+            }
+          }
+        }
+        
+      </div>
       <main className={styles.main}>
         <h1 className={styles.title}>
           {logo}

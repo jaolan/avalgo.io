@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 // Moralis to connect user w/ web3
 const ConnectWallet = () => {
   const chain = "eth"
-	const { authenticate, isAuthenticated, logout, user } = useMoralis()
+	const { authenticate, isAuthenticated, logout, user} = useMoralis()
   const Web3Api = useMoralisWeb3Api()
 
   // Formats address to:
