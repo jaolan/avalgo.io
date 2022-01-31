@@ -9,7 +9,7 @@ import Bounty from './components/Bounty'
 import axios from 'axios'
 import React, { useState } from 'react'
 
-const code: NextPage = () => {
+const Code: NextPage = () => {
   const API_URL = 'https://s6wsreqrlb.execute-api.us-east-1.amazonaws.com'
   const [question, setQuestion] = useState<string>('Get the kth largest subarray for the following: [1,2,3,4,5]')
   
@@ -50,4 +50,4 @@ const code: NextPage = () => {
   )
 }
 
-export default code
+export default Code

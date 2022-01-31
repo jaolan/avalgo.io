@@ -32,6 +32,7 @@ const AvaxPrice = () => {
     return () => {
       window.clearInterval(timer);
     };
+    // eslint-disable-line react-hooks/exhaustive-deps
   }, []);
 
   // Set smartcontract ABI - This will allow us to call chainlink price getter

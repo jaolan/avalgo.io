@@ -34,7 +34,8 @@ const CodeView = () => {
 
   useEffect(() => {
     console.log(count, numQuestions)
-    getQuestion(count)    
+    getQuestion(count)   
+    // eslint-disable-line react-hooks/exhaustive-deps 
   }, []);
 
   // submit code to 'backend', send user's address for updating question status
