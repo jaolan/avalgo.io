@@ -33,17 +33,23 @@ const Code: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Code | Avalgo</title>
-        <meta name="description" content="Code" />
+        <meta name="description" content="Avalgo - A free, play-to-earn coding dApp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className={styles.main}>
         <h1 className={styles.title}>{logo}</h1>
         <h1 className={styles.title}>Code</h1>
+        <div className={codeStyles.main}>
+        <CodeView />
+        </div>
       </main>
-      <div className={codeStyles.main}>
-      <CodeView />
-      </div>
+
+      <footer className={styles.footer}>
+        <a>
+          made w/ ❤️ by olan.eth
+        </a>
+      </footer>
     </div>
   )
 }
