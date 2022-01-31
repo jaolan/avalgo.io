@@ -7,7 +7,7 @@ import CodeView from './components/CodeView'
 import logo from './components/logo'
 import Bounty from './components/Bounty'
 import axios from 'axios'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const code: NextPage = () => {
   const API_URL = 'https://s6wsreqrlb.execute-api.us-east-1.amazonaws.com'
