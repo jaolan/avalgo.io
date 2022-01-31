@@ -4,7 +4,6 @@ import { useMoralis, useMoralisWeb3Api, useNativeBalance } from "react-moralis"
 
 import styles from '/styles/ConnectWallet.module.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import useCheckMobileScreen from "./CheckMobile"
 
 // Connect Wallet FC
 //  web3 wallet connector supporting metamask, brave and a few others
@@ -29,7 +28,7 @@ const ConnectWallet = () => {
   // get the native chain balance
   const NativeBalance = () => {
     const balance = useNativeBalance({ chain : chain });
-    console.log(balance)
+    // console.log(balance)
   }
 
 	return(

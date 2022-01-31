@@ -34,7 +34,7 @@ const CodeView = () => {
   // /get-question-data?qId=1&appId=69420'
 
   useEffect(() => {
-    console.log(count, numQuestions)
+    // console.log(count, numQuestions)
     getQuestion(count)   
     // eslint-disable-line react-hooks/exhaustive-deps 
   }, []);
@@ -58,7 +58,7 @@ const CodeView = () => {
     axios
       .post(API_URL + `/avalgo-compiler`, JSON.stringify(params))
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         // set pass/fail, set/hide fail UI to render
         if(res.data.pass && res.data.pass.includes('true')){
           setPass(true)
@@ -86,7 +86,7 @@ const CodeView = () => {
       // .get(API_URL + 'questions/' + question.toString())
       .get(API_URL + `/get-question-data?${params}`)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
 
         const title = res.data.title
         const reward = res.data.reward
@@ -176,7 +176,7 @@ const CodeView = () => {
           <Button variant="danger" className={styles.submitBtn} onClick={() => {
               if(count > 1) {
                 setCount(count-1)
-                console.log('count: ', count)
+                // console.log('count: ', count)
                 getQuestion(count-1)
                 setPass(false)
                 setShowFail(false)
@@ -188,7 +188,7 @@ const CodeView = () => {
           <Button variant="danger" className={styles.submitBtn} onClick={() => {
               if(count < numQuestions) {
                 setCount(count+1)
-                console.log('count: ', count)
+                // console.log('count: ', count)
                 getQuestion(count+1)
                 setPass(false)
                 setShowFail(false)

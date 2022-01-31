@@ -138,7 +138,7 @@ class Payout {
   //  note: caller can set amount to claim. 
   //  note: Xfer contract will NOT let you withdraw more than 0.5 AVAX at a time.
   claimReward = async (claimAmount: number) => {
-    console.log(claimAmount)
+    // console.log(claimAmount)
     try {
       const options = {
         // chain: "0xa869",

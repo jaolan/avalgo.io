@@ -143,3 +143,19 @@
 .avaxPrice :hover {
   color: rgb(189, 27, 27);
 }
+
+@media (min-width: 601px) {
+.centeredContainer {
+  /* padding: 0 10rem; */
+  max-width: 700px;
+  text-align: center;
+}
+}
+
+@media (max-width: 600px) {
+  .centeredContainerMobile {
+    /* padding: 0 1rem; */
+    max-width: 500px;
+    text-align: center;
+  }
+}

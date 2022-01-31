@@ -19,7 +19,7 @@ const Code: NextPage = () => {
     axios
       .get(API_URL + `/get-question-data?${params}`)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
 
         const title = res.data.title
         setQuestion(title)

@@ -30,6 +30,18 @@ const Home: NextPage = () => {
           Avalgo is a play-to-earn coding platform where anyone can get paid to learn to code. Connect your wallet to start earning and learning.
         </p>
 
+        <h1 className={styles.description}>
+          How does it work?
+        </h1>
+        <div className={styles.centeredContainer}>
+        <p className={styles.centeredContainerMobile}>
+          With Avalgo, you connect your Avalanche wallet to play. 
+          Once you connect, you can answer coding and algorithm quesitons to aim for rewards.
+          Answering questions correctly will earn you a bounty - the harder the question, the larger the bounty!
+          All rewards are paid in the native currency, AVAX.
+        </p>
+        </div>
+
         <CodeView />
       </main>
 

@@ -72,7 +72,7 @@ const AvaxPrice = () => {
       const price = await Moralis.Web3API.native.runContractFunction(options);
       // writing numbers in javascript is fun
       const fmtPrice: number = parseFloat((Number(price) * 10**-8).toFixed(2))
-      console.log(fmtPrice)
+      // console.log(fmtPrice)
       setPrice(fmtPrice)
       return true
     } catch (e) {
