@@ -177,6 +177,7 @@
 
 .testnet {
   padding: 10px;
+  text-align: center;
   animation: 2s fadeIn;
   animation-fill-mode: forwards;
   visibility: hidden;
