@@ -4,7 +4,8 @@ import { javascript } from '@codemirror/lang-javascript';
 import { oneDark }from './oneDarkTheme';
 import axios from 'axios';
 
-import styles from '/styles/CodeView.module.css'
+import codeStyles from '/styles/CodeView.module.css'
+import bountyStyles from '/styles/Bounty.module.css'
 import homeStyles from '/styles/Home.module.css'
 import { useMoralis } from 'react-moralis';
 import ConnectWallet from './ConnectWallet.component';
@@ -121,17 +122,18 @@ const CodeView = () => {
   }
 
   return (
-    <div className={styles.codeViewMobile}>
+    <div className={homeStyles.autoSize}>
       <p className={homeStyles.description}>{questionTitle}</p>
-      <div className={homeStyles.center}>
+      <div className={bountyStyles.bounty}>
         <Bounty nativeReward={reward} />
       </div>
-      <div className={styles.codeView}>
+      <div className={codeStyles.codeView}>
         <CodeMirror
-        // className={styles.codeViewMobile}
+        className={codeStyles.codeMirror}
         value={code}
         height="250px"
         width="auto"
+        // maxWidth="575"
         theme="dark"
         extensions={[javascript({ jsx: true }), oneDark]}
         onChange={(value, viewUpdate) => {
@@ -142,7 +144,7 @@ const CodeView = () => {
       </div>
       {/* Show/hide pass UI */}
       { pass ? (
-        <div className={styles.center}>
+        <div className={codeStyles.center}>
           <h1>Your answer is correct, good job!</h1>
           <p>Claim your reward below.</p>
         </div>
@@ -152,7 +154,7 @@ const CodeView = () => {
       )}
       {/* Show/hide fail UI */}
       { showFail ? (
-        <div className={styles.center}>
+        <div className={codeStyles.center}>
           <h1>Your answer was incorrect, please try again. </h1>
         </div>
       ) : ( 
@@ -160,20 +162,20 @@ const CodeView = () => {
       )}
       { user?.authenticated ? (
         <div>
-          <div className={styles.center}>
+          <div className={codeStyles.center}>
           <ButtonGroup>
-            <Button variant="danger" className={styles.submitBtn} onClick={submitCode}>
+            <Button variant="danger" className={codeStyles.submitBtn} onClick={submitCode}>
               {btnText}
             </Button>
             {/* <p style={{ padding: '1px'}} /> */}
-            <Button variant="danger" className={styles.submitBtn} onClick={claimReward} disabled={!pass}>
+            <Button variant="danger" className={codeStyles.submitBtn} onClick={claimReward} disabled={!pass}>
               Claim AVAX 🔺
             </Button>
           </ButtonGroup>
         </div>
-        <div className={styles.center}>
+        <div className={codeStyles.center}>
           <ButtonGroup>
-          <Button variant="danger" className={styles.submitBtn} onClick={() => {
+          <Button variant="danger" className={codeStyles.submitBtn} onClick={() => {
               if(count > 1) {
                 setCount(count-1)
                 // console.log('count: ', count)
@@ -185,7 +187,7 @@ const CodeView = () => {
           >
             ⬅️ Prev
           </Button>
-          <Button variant="danger" className={styles.submitBtn} onClick={() => {
+          <Button variant="danger" className={codeStyles.submitBtn} onClick={() => {
               if(count < numQuestions) {
                 setCount(count+1)
                 // console.log('count: ', count)
@@ -201,7 +203,7 @@ const CodeView = () => {
         </div>
       </div>
       ) : (
-        <div className={styles.center}>
+        <div className={codeStyles.center}>
           <Alert variant="danger"> Answer and claim AVAX rewards by connecting your wallet!</Alert>
           <ConnectWallet />
         </div>
