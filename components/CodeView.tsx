@@ -163,45 +163,42 @@ const CodeView = () => {
       { user?.authenticated ? (
         <div>
           <div className={codeStyles.center}>
-          <ButtonGroup>
-            <Button variant="danger" className={codeStyles.submitBtn} onClick={submitCode}>
-              {btnText}
-            </Button>
-            {/* <p style={{ padding: '1px'}} /> */}
-            <Button variant="danger" className={codeStyles.submitBtn} onClick={claimReward} disabled={!pass}>
-              Claim AVAX 🔺
-            </Button>
-          </ButtonGroup>
+            <ButtonGroup>
+              <Button size="lg" variant="danger" className={codeStyles.submitBtn} onClick={submitCode}>
+                {btnText}
+              </Button>
+              <Button size="lg" variant="danger" className={codeStyles.submitBtn} onClick={claimReward} disabled={!pass}>
+                Claim AVAX 🔺
+              </Button>
+            </ButtonGroup>
+          </div>
+          <div className={codeStyles.center}>
+            <ButtonGroup>
+              <Button size="lg" variant="danger" className={codeStyles.submitBtn} onClick={() => {
+                  if(count > 1) {
+                    setCount(count-1)
+                    getQuestion(count-1)
+                    setPass(false)
+                    setShowFail(false)
+                  }
+                }}
+              >
+                ⬅️ Prev
+              </Button>
+              <Button size="lg" variant="danger" className={codeStyles.submitBtn} onClick={() => {
+                  if(count < numQuestions) {
+                    setCount(count+1)
+                    getQuestion(count+1)
+                    setPass(false)
+                    setShowFail(false)
+                  }
+                }}
+              >
+                Next ➡
+              </Button>
+            </ButtonGroup>
+          </div>
         </div>
-        <div className={codeStyles.center}>
-          <ButtonGroup>
-          <Button variant="danger" className={codeStyles.submitBtn} onClick={() => {
-              if(count > 1) {
-                setCount(count-1)
-                // console.log('count: ', count)
-                getQuestion(count-1)
-                setPass(false)
-                setShowFail(false)
-              }
-            }}
-          >
-            ⬅️ Prev
-          </Button>
-          <Button variant="danger" className={codeStyles.submitBtn} onClick={() => {
-              if(count < numQuestions) {
-                setCount(count+1)
-                // console.log('count: ', count)
-                getQuestion(count+1)
-                setPass(false)
-                setShowFail(false)
-              }
-            }}
-          >
-            Next ➡
-          </Button>
-          </ButtonGroup>
-        </div>
-      </div>
       ) : (
         <div className={codeStyles.center}>
           <Alert variant="danger"> Answer and claim AVAX rewards by connecting your wallet!</Alert>
