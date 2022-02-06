@@ -8,9 +8,7 @@ import { useMoralis, useMoralisWeb3Api } from "react-moralis"
 // Style w/ react-bootstrap
 // Moralis to connect user w/ web3
 const ConnectWallet = () => {
-  const chain = "eth"
 	const { Moralis, authenticate, isAuthenticated, logout, user, chainId} = useMoralis()
-  const Web3Api = useMoralisWeb3Api()
   const onCorrectChain: boolean = chainId == '0xa869'
 
   // Formats address to:
@@ -35,81 +33,50 @@ const ConnectWallet = () => {
       3) User not auth'd/not exists, correct network
       4) User not auth'd/not exists, incorrect network
   */
-
+  
   // 1) User auth'd, exists, correct network
   if( isAuthenticated 
-        && user 
+        && user
         && onCorrectChain ) {
     return ( 
       <Button variant="danger" onClick={logout}>
-        {user.get('ethAddress').substring(0,6) 
-          + '...' 
-          + user.get('ethAddress')
-            .substring(user.get('ethAddress').length-5,
-            user.get('ethAddress').length-1)
-        }
+        { formattedAddress(user.get('ethAddress')) }
       </Button>
     ) 
   } 
-  // 2) User auth'd, exists, incorrect network
+  // 2) User not auth'd, exists, incorrect network
   else if (isAuthenticated 
-    && user 
+    && user
     && !onCorrectChain) {
     return (
       <Button variant="danger" onClick={ async () => {
           await switchNetworks()
         }}
       >
-          Switch Network
-        </Button>
+        Switch Network
+      </Button>
     )
   }
-  // 3) User not auth'd/not exists, correct network
-  // 4) User not auth'd/not exists, correct network
+  /*
+    3) User not auth'd/not exists, correct network
+    or
+    4) User not auth'd/not exists, correct network
+  */
   else {
-      return ( 
-        <Button variant="danger" onClick={ () => {
-        // use walletconnect on mobile displays
-        const onMobile = window.screen.width <= 768
-        onMobile 
-          ? authenticate({signingMessage : 'Authenticate to play Avalgo', provider: 'walletconnect'})
-          : authenticate({signingMessage : 'Authenticate to play Avalgo',});
-        
-        }}
-        >
-          Connect Wallet
-        </Button>
-      )
+    return ( 
+      <Button variant="danger" onClick={ () => {
+      // use walletconnect on mobile displays
+      const onMobile = window.screen.width <= 768
+      onMobile 
+        ? authenticate({signingMessage : 'Authenticate to play Avalgo', provider: 'walletconnect'})
+        : authenticate({signingMessage : 'Authenticate to play Avalgo',});
+      
+      }}
+      >
+        Connect Wallet
+      </Button>
+    )
   } 
-  
-	// return (
-  //   // User is authenticated, valid, and on correct network
-  //   isAuthenticated && user 
-  //     ? ( <Button variant="danger" onClick={logout}>
-  //           {user.get('ethAddress').substring(0,6) 
-  //             + '...' 
-  //             + user.get('ethAddress')
-  //               .substring(user.get('ethAddress').length-5,
-  //               user.get('ethAddress').length-1)
-  //           }
-  //       </Button>
-  //       ) 
-  //     : ( !isAuthenticated 
-  //           ? <Button variant="danger" onClick={() => {
-  //             // use walletconnect on mobile displays
-  //             const onMobile = window.screen.width <= 768
-  //             onMobile 
-  //               ? authenticate({signingMessage : 'Authenticate to play Avalgo', provider: 'walletconnect'})
-  //               : authenticate({signingMessage : 'Authenticate to play Avalgo',});
-              
-  //             }}
-  //             >
-  //               { buttonText }
-  //             </Button>
-  //           : <div/>
-  //         )
-  //         )
-	// )
 }
 
 export default ConnectWallet
