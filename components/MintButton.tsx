@@ -4,6 +4,7 @@ import styles from '/styles/ConnectButton.module.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import { useMoralis } from "react-moralis"
 import { Moralis } from 'moralis';
+import ConnectWallet from "./ConnectWallet.component"
 
 // Connect Wallet FC
 //  web3 wallet connector supporting metamask, brave and a few others
@@ -11,7 +12,10 @@ import { Moralis } from 'moralis';
 // Style w/ react-bootstrap
 // Moralis to connect user w/ web3
 const MintButton = () => {
-  const { user } = useMoralis()
+  const { user, chainId } = useMoralis()
+  let userAddress: string
+  user ? userAddress = user.get('ethAddress') : userAddress = '0x0'
+  const correctChain: boolean = (chainId == '0xa869')
 
   // abi for avalgo.sol
   const ABI = [
@@ -485,11 +489,9 @@ const MintButton = () => {
 
   // call our contract and mint
   const mint = async () => {
-    // console.log(claimAmount)
-    // Get addr
-    let userAddress
     // if no user addr, user is not signed in. UI + state require signin so we're covered
-    user ? userAddress = user.get('ethAddress') : userAddress = '0x0'
+    // if no user, update user their wallet is not connected
+    // user ? userAddress = user.get('ethAddress') : userAddress = '0x0'
     try {
       const options = {
         // chain: "0xa869",
@@ -515,10 +517,19 @@ const MintButton = () => {
     }
   }
 
-	return(
-      <Button variant="danger" className={styles.btn} onClick={mint}>
-        Mint AvalgoPass (Free)
-      </Button>
+  /*
+    States:
+      1) Correct network, wallet connected
+      3) Correct network, no wallet connected
+      2) Incorrect network, wallet connected
+      4) Incorrect network, no wallet connected
+  */
+	return (
+    correctChain &&  userAddress !== "0x0" 
+      ? <Button variant="danger" className={styles.btn} onClick={mint}>
+          Mint AvalgoPass (Free)
+        </Button>
+      : <ConnectWallet/>
 	)
 }
 
