@@ -7,6 +7,8 @@ import { Button } from "react-bootstrap"
 import { useRouter } from 'next/router';
 import TestnetAlert from '../components/TestnetAlert';
 import { useMoralis } from "react-moralis"
+import NFTModal from '../components/NFTModal.component';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
 
@@ -18,6 +20,10 @@ const Home: NextPage = () => {
     router.push('/code')
   }
 
+  // var nftData = NFTBalances()
+  // console.log('nftData: ', nftData)
+  const [modalShow, setModalShow] = useState(false);
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -34,6 +40,11 @@ const Home: NextPage = () => {
           </div> 
         : <div/>
       }
+      {/* <NFTBalances/> */}
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Launch vertically centered modal
+      </Button>
+      <NFTModal show={modalShow} onHide={() => setModalShow(false)} />
       <main className={styles.main}>
         <h1 className={styles.title}>
           {logo}

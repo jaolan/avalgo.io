@@ -30,6 +30,12 @@
   min-width: 300px;
 }
 
+@media only screen and (max-width: 479px) {
+  .codeMirror { 
+    font-size: 12px;
+  }
+}
+
 .codeView {
   min-width: 300px;
 }

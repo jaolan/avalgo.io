@@ -138,7 +138,6 @@ const CodeView = () => {
         extensions={[javascript({ jsx: true }), oneDark]}
         onChange={(value, viewUpdate) => {
           setCode(value)
-          // console.log('value:', code)
         }}
         />
       </div>
