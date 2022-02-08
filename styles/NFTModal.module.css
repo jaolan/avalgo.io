@@ -1,8 +1,14 @@
 .imgContainer {
-  padding: 1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .img {
   width: 100%;
   height: 100%;
+}
+
+.address {
+  word-wrap: break-word;
+  text-decoration: none;
 }

@@ -43,6 +43,7 @@ const NFTModal: React.FC<nftProps> = ({title, imageUrl, description, show, onHid
             nftData.name === "Avalgo Pass"
               ? res = nftData//console.log(`NFT: \n${nftData.name}\n${nftData.image}\n${nftData.description}`)
               : res = { }
+            console.log('nftdata: ', nftData)
           })
         }
       })
@@ -57,7 +58,6 @@ const NFTModal: React.FC<nftProps> = ({title, imageUrl, description, show, onHid
       setNftImageUrl(imageUrl)
       setNftDescription(description)
       setNftOwner(ownerOf)
-      console.log('res: ', res)
     }
     setMetadata()
     // eslint-disable-line react-hooks/exhaustive-deps
@@ -73,18 +73,18 @@ const NFTModal: React.FC<nftProps> = ({title, imageUrl, description, show, onHid
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Your new NFT!
+          Your new NFT
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {nftTitle}
+        <b>{nftTitle}</b>
         <div className={styles.imgContainer}>
           <img className={styles.img} src={nftImageUrl}/>
         </div>
-        <p>Description</p>
+        <p><b>Description</b></p>
         <p>{nftDescription}</p>
-        <p>Owner</p>
-        {nftOwner}
+        <p><b>Owner</b></p>
+        <a className={styles.address} target='_blank' href={'https://testnet.snowtrace.io/address/' + nftOwner}>{nftOwner}</a>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={onHide}>Close</Button>
