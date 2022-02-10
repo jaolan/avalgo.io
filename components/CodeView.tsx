@@ -30,12 +30,9 @@ const CodeView = () => {
 
   const { user } = useMoralis()
 
-  // const API_URL = 'http://localhost:80/'
   const API_URL = 'https://s6wsreqrlb.execute-api.us-east-1.amazonaws.com'
-  // /get-question-data?qId=1&appId=69420'
 
   useEffect(() => {
-    // console.log(count, numQuestions)
     getQuestion(count)   
     // eslint-disable-line react-hooks/exhaustive-deps 
   }, []);
@@ -84,18 +81,14 @@ const CodeView = () => {
     const appId = process.env.NEXT_PUBLIC_APP_ID?.toString()
     const params: string = `qId=${q}&appId=${appId}`
     axios
-      // .get(API_URL + 'questions/' + question.toString())
       .get(API_URL + `/get-question-data?${params}`)
       .then((res) => {
-        // console.log(res.data)
-
         const title = res.data.title
         const reward = res.data.reward
         // Set the CodeView code as question + template + testcase
         const code = '// ' + title + '\n'
         + '// reward: 🔺' + reward + '\n\n'
         + res.data.template
-        // + res.data.testcase
         // set all data so we may update UI
         setData(title, code, reward)
       
@@ -133,7 +126,6 @@ const CodeView = () => {
         value={code}
         height="250px"
         width="auto"
-        // maxWidth="575"
         theme="dark"
         extensions={[javascript({ jsx: true }), oneDark]}
         onChange={(value, viewUpdate) => {

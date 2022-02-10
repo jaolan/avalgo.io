@@ -36,6 +36,7 @@ const NFTModal: React.FC<nftProps> = ({title, imageUrl, description, show, onHid
             result.metadata 
               ? nftData = JSON.parse(result?.metadata)
               : nftData = null
+            // Set owner if exists
             result.owner_of 
               ? ownerOf = result.owner_of
               : ownerOf = ''

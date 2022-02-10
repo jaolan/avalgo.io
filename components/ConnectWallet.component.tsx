@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { Button } from "react-bootstrap"
-import { useMoralis, useMoralisWeb3Api } from "react-moralis"
+import { useMoralis } from "react-moralis"
 
 // Connect Wallet FC
 //  web3 wallet connector supporting metamask, brave and a few others

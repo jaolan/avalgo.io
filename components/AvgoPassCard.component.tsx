@@ -16,11 +16,6 @@ const AvgoPass = () => {
   // NFT holder
   const [count, setCount] = React.useState<number>(0);
   const { authenticate, isAuthenticated, logout, user} = useMoralis()
-  let userAddress: string
-  // if no user addr, user is not signed in. UI + state require signin so we're covered
-  user ? userAddress = user.get('ethAddress') : userAddress = '0x0'
-  // set states for UI
-  // const [code, setCode] = useState<string>(userCode + testCode)
 
   // Get NFT balance
   useEffect(() => {

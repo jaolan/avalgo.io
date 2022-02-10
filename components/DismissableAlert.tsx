@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, Button } from 'react-bootstrap'
+import { Alert } from 'react-bootstrap'
 import MintButton from './MintButton';
 import styles from '/styles/Home.module.css'
 import NFTBalance from "./NFTBalance"

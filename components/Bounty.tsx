@@ -15,18 +15,6 @@ interface bountyProps {
 
 // TODO: use getters to get each question's bounty from backend
 const Bounty: React.FC<bountyProps> = ({nativeReward}) => {
-  // const [nativeBounty, setNativeBounty] = useState<number>(0)
-
-  // TODO: Fetch native bounty from question backend
-  useEffect(() => {
-    getBounty(1)
-  }, []);
-
-  // TODO: Fetch native bounty from question backend for specific question
-  const getBounty = (question: number) => {
-    const bounty: number = 0.04
-    // setNativeBounty(bounty)
-  }
 
   return (
       <Card border="danger" text="danger" className={styles.avaxBounty}>
